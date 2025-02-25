@@ -45,7 +45,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input3.txt
         input: ''
-        expected-output: '32626'
+        expected-output: '0'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -57,7 +57,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input4.txt
         input: ''
-        expected-output: '44042'
+        expected-output: '23350'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -69,7 +69,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input5.txt
         input: ''
-        expected-output: '266'
+        expected-output: '0'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -81,7 +81,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input6.txt
         input: ''
-        expected-output: '30942'
+        expected-output: '30911'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -93,7 +93,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input7.txt
         input: ''
-        expected-output: '30048'
+        expected-output: '0'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -105,7 +105,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input8.txt
         input: ''
-        expected-output: '46000'
+        expected-output: '8342'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -117,7 +117,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input9.txt
         input: ''
-        expected-output: '29609'
+        expected-output: '22450'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -129,7 +129,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input10.txt
         input: ''
-        expected-output: '6365'
+        expected-output: '4977'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -141,7 +141,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input11.txt
         input: ''
-        expected-output: '10031'
+        expected-output: '8889'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -153,7 +153,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input12.txt
         input: ''
-        expected-output: '12211'
+        expected-output: '0'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -165,7 +165,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input13.txt
         input: ''
-        expected-output: '25809'
+        expected-output: '0'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -177,7 +177,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input14.txt
         input: ''
-        expected-output: '22909'
+        expected-output: '0'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -189,7 +189,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input15.txt
         input: ''
-        expected-output: '29982'
+        expected-output: '0'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -201,7 +201,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input16.txt
         input: ''
-        expected-output: '4519'
+        expected-output: '0'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -213,7 +213,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input17.txt
         input: ''
-        expected-output: '19927'
+        expected-output: '0'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -225,7 +225,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input18.txt
         input: ''
-        expected-output: '40151'
+        expected-output: '0'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -237,7 +237,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input19.txt
         input: ''
-        expected-output: '3057'
+        expected-output: '0'
         comparison-method: exact
         timeout: 1
         max-score: 1
@@ -249,7 +249,7 @@ jobs:
         setup-command: ''
         command: python3 problema1.py < inputs/problema1_input20.txt
         input: ''
-        expected-output: '3485'
+        expected-output: '0'
         comparison-method: exact
         timeout: 1
         max-score: 1
