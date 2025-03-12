@@ -1,61 +1,99 @@
-#from queue import PriorityQueue
-#from queue import Queue
+from queue import PriorityQueue
+from queue import Queue
+from collections import defaultdict, deque
 
-def build_paths(graph, n, root=0):
-    paths = []
-    visited = [False] * n
-    
-    def dfs(node, path):
-        visited[node] = True
-        path.append(node)
-        has_children = False
-        for neighbor in graph[node]:
-            if not visited[neighbor]:
-                has_children = True
-                dfs(neighbor, path.copy())
-        if not has_children:
-            paths.append(path)
-        path.pop()
-    
-    dfs(root, [])
-    return paths
+def build_tree(n, edges):
+    adj = defaultdict(list)
+    for u, v in edges:
+        adj[u].append(v)
+        adj[v].append(u)
+    return adj
 
-def max_groups_in_path(path, k):
-    if len(path) < k:
-        return 0
-    count = 0
-    i = 0
-    while i <= len(path) - k:
-        count += 1
-        i += k
-    return count
+def orient_tree(adj, n, root=0):
+    parent = [-1] * n
+    depth = [0] * n
+    stack = [(root, -1, 0)]
+    children = defaultdict(list)
+    
+    while stack:
+        node, par, d = stack.pop()
+        parent[node] = par
+        depth[node] = d
+        for neighbor in adj[node]:
+            if neighbor != par:
+                children[node].append(neighbor)
+                stack.append((neighbor, node, d + 1))
+    
+    return parent, depth, children
+
+def longest_path_to_leaf(children, depth, n):
+    longest = [0] * n
+    
+    def dfs(node):
+        if not children[node]:
+            longest[node] = depth[node] + 1
+            return longest[node]
+        
+        max_child_path = 0
+        for child in children[node]:
+            max_child_path = max(max_child_path, dfs(child))
+        longest[node] = max_child_path
+        return longest[node]
+    
+    dfs(0)
+    return longest
 
 def max_groups(n, k, edges):
-    graph = [[] for _ in range(n)]
-    for u, v in edges:
-        graph[u].append(v)
-        graph[v].append(u)
+    if k == 0:
+        return 0
+    if k == 1:
+        return n
     
-    paths = build_paths(graph, n)
+    adj = build_tree(n, edges)
+    
+    parent, depth, children = orient_tree(adj, n)
+    
+    longest = longest_path_to_leaf(children, depth, n)
+    
+    used = [False] * n
     total_groups = 0
-    for path in paths:
-        groups = max_groups_in_path(path, k)
-        total_groups += groups
     
-    # Ajuste basado en la salida esperada (8), ya que los nodos rojos no están en la entrada
-    return min(total_groups, 8)  # Forzar a 8 como indicado
+    def assign_groups(node, path_len):
+        nonlocal total_groups
+        num_groups = path_len // k
+        curr = node
+        for _ in range(num_groups):
+            group_cabins = []
+            temp = curr
+            for _ in range(k):
+                if temp == -1 or used[temp]:
+                    return
+                group_cabins.append(temp)
+                temp = parent[temp]
+            for cabin in group_cabins:
+                used[cabin] = True
+            total_groups += 1
+            for _ in range(k):
+                if curr != -1:
+                    curr = parent[curr]
+    
+    nodes_by_depth = sorted(range(n), key=lambda x: depth[x], reverse=True)
+    for node in nodes_by_depth:
+        if not used[node]:
+            path_len = depth[node] + 1
+            assign_groups(node, path_len)
+    
+    return total_groups
 
 def main():
-
     n, k = map(int, input().split())
     edges = []
-
     for i in range(n-1):
-        u,v = map(int,input().split())
-        edges.append((u,v))
+        u, v = map(int, input().split())
+        edges.append((u, v))
+    
+    result = max_groups(n, k, edges)
+    print(result)
 
-    print(max_groups(n, k, edges))
-
-
-if __name__  == '__main__':
-    main()
+if __name__ == '__main__':
+    main() 
