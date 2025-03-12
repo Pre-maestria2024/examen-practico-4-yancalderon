@@ -3,7 +3,7 @@ import sys
 # Establecer un valor muy negativo para representar -infinito
 INF = -float('inf')
 
-def max_dollars(m, n, h, d):
+def max_dolares(m, n, h, d):
     # dp[i][hp] representa la cantidad máxima de dólares que se pueden ganar
     # desde el alimento i en adelante con salud hp
     dp = [[INF] * (n + 1) for _ in range(m + 1)]
@@ -47,7 +47,7 @@ def main():
 	H = list(map(int, input().split()))
 	D = list(map(int, input().split()))
 
-	print(max_dollars(m, n, H, D))
+	print(max_dolares(m, n, H, D))
 
 if __name__ == '__main__':
 	main()
