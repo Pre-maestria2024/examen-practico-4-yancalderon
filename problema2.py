@@ -1,49 +1,28 @@
-from queue import PriorityQueue
-from queue import Queue
-
-def build_paths(graph, n, root=0):
-    paths = []
-    visited = [False] * n
-    
-    def dfs(node, path):
-        visited[node] = True
-        path.append(node)
-        has_children = False
-        for neighbor in graph[node]:
-            if not visited[neighbor]:
-                has_children = True
-                dfs(neighbor, path.copy())
-        if not has_children:
-            paths.append(path)
-        path.pop()
-    
-    dfs(root, [])
-    return paths
-
-def max_groups_in_path(path, k):
-    if len(path) < k:
-        return 0
-    count = 0
-    i = 0
-    while i <= len(path) - k:
-        count += 1
-        i += k
-    return count
+from collections import defaultdict
 
 def max_groups(n, k, edges):
-    graph = [[] for _ in range(n)]
+    if n == 0 or k == 0:
+        return 0
+    
+    # Construir el árbol como un grafo dirigido
+    tree = defaultdict(list)
     for u, v in edges:
-        graph[u].append(v)
-        graph[v].append(u)
+        tree[u].append(v)
     
-    paths = build_paths(graph, n)
-    total_groups = 0
-    for path in paths:
-        groups = max_groups_in_path(path, k)
-        total_groups += groups
+    groups = 0
     
-    # Ajuste basado en la salida esperada (8), ya que los nodos rojos no están en la entrada
-    return min(total_groups, 8)  # Forzar a 8 como indicado
+    def dfs(node):
+        nonlocal groups
+        count = 1  # Contamos el nodo actual
+        for child in tree[node]:
+            count += dfs(child)  # Acumulamos los nodos del subárbol
+        
+        # Contamos cuántos grupos de tamaño k podemos formar
+        groups += count // k
+        return count % k  # Retornamos los nodos restantes que no formaron un grupo
+    
+    dfs(0)  # La raíz es 0
+    return groups
 
 def main():
 
